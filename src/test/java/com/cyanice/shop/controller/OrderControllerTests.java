@@ -1,6 +1,5 @@
 package com.cyanice.shop.controller;
 
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.time.Instant;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -36,7 +33,7 @@ public class OrderControllerTests {
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.maxSaleDate").isNotEmpty());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.date").isNotEmpty());
     }
 
     @Test
