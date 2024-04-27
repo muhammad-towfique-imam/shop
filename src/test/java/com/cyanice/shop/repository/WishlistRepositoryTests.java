@@ -26,7 +26,7 @@ public class WishlistRepositoryTests {
     private CustomerRepository customerRepository;
 
     @Test
-    public void WishlistRepository_SaveAll_ReturnSavedWishlist() {
+    public void WishlistRepository_SaveAll_ReturnWishlistNotEmpty() {
         Customer c1 = Customer.builder().name("Customer1").email("c1@gmail.com").build();
         customerRepository.save(c1);
 

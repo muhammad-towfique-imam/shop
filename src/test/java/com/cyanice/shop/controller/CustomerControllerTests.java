@@ -28,7 +28,7 @@ public class CustomerControllerTests {
     private ProductService productService;
 
     @Test
-    public void shouldGetCustomerWishlist() throws Exception {
+    public void CustomerController_GetCustomerWishlist_ReturnWishlistNotEmpty() throws Exception {
         when(productService.getCustomerWishlist(1)).thenReturn(Arrays.asList(
                 ProductDto.builder().name("iPhone").price(1000.0).build(),
                 ProductDto.builder().name("iPod").price(300.0).build(),
