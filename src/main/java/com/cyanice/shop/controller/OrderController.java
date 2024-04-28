@@ -23,6 +23,7 @@ import java.util.List;
 
 import static com.cyanice.shop.etc.DateUtil.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
@@ -39,6 +40,8 @@ public class OrderController {
     @GetMapping("/sale-on-date")
     public ResponseEntity<CurrentSaleDto> saleOnDate(
             @RequestParam(name = "date", required = false) @DateTimeFormat(pattern = API_DATE_FMT) LocalDate date) {
+        log.info(String.format("Inside OrderController()"));
+        log.debug(String.format("Parameters = (date) -> %s", date));
         Instant instantDate = date != null? localDateToInstant(date): Instant.now();
         double total = orderService.getTotalSale(instantDate, instantDate);
         return new ResponseEntity<>(

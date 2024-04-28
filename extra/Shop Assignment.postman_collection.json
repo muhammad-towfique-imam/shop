@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "ca4bde82-1b91-4a38-8f59-9a9bf5278bad",
+		"name": "Shop Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44943"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "order",
+					"item": [
+						{
+							"name": "sale-on-date",
+							"item": [
+								{
+									"name": "sale On Date",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/order/sale-on-date?date=<date>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"sale-on-date"
+											],
+											"query": [
+												{
+													"key": "date",
+													"value": "<date>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/order/sale-on-date?date=<date>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"order",
+														"sale-on-date"
+													],
+													"query": [
+														{
+															"key": "date",
+															"value": "<date>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"date\": \"<date>\",\n  \"total\": \"<double>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "popular-products",
+							"item": [
+								{
+									"name": "popular Products",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/order/popular-products?duration=All",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"popular-products"
+											],
+											"query": [
+												{
+													"key": "duration",
+													"value": "All"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/order/popular-products?duration=All",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"order",
+														"popular-products"
+													],
+													"query": [
+														{
+															"key": "duration",
+															"value": "All"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"price\": \"<double>\",\n    \"saleCount\": \"<long>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"price\": \"<double>\",\n    \"saleCount\": \"<long>\"\n  }\n]"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "max-sale-date",
+							"item": [
+								{
+									"name": "max Sale Date",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/order/max-sale-date?from=<date>&to=<date>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"order",
+												"max-sale-date"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "<date>"
+												},
+												{
+													"key": "to",
+													"value": "<date>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/order/max-sale-date?from=<date>&to=<date>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"order",
+														"max-sale-date"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "<date>"
+														},
+														{
+															"key": "to",
+															"value": "<date>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "wishlist",
+									"item": [
+										{
+											"name": "get User Wishlist",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/customer/:id/wishlist?pageNo=0&pageSize=10",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"customer",
+														":id",
+														"wishlist"
+													],
+													"query": [
+														{
+															"key": "pageNo",
+															"value": "0"
+														},
+														{
+															"key": "pageSize",
+															"value": "10"
+														}
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<long>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/customer/:id/wishlist?pageNo=0&pageSize=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"customer",
+																":id",
+																"wishlist"
+															],
+															"query": [
+																{
+																	"key": "pageNo",
+																	"value": "0"
+																},
+																{
+																	"key": "pageSize",
+																	"value": "10"
+																}
+															],
+															"variable": [
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"content\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": \"<double>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": \"<double>\"\n    }\n  ],\n  \"pageNo\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\",\n  \"last\": \"<boolean>\"\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "logger",
+					"item": [
+						{
+							"name": "get-log-level",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/actuator/loggers/com.cyanice.shop.controller",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"actuator",
+										"loggers",
+										"com.cyanice.shop.controller"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change-log-level",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/actuator/loggers/com.cyanice.shop.controller",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"actuator",
+										"loggers",
+										"com.cyanice.shop.controller"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

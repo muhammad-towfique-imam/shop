@@ -8,6 +8,7 @@ import com.cyanice.shop.service.OrderService;
 import com.cyanice.shop.service.ProductService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,8 +22,8 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cyanice.shop.etc.DateUtil.localDateToStr;
-import static com.cyanice.shop.etc.DateUtil.strToInstant;
+import static com.cyanice.shop.etc.DateUtil.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -40,19 +41,20 @@ public class OrderControllerTests {
 
     @Test
     public void OrderController_GetSaleForToday_ReturnAmountWithDate() throws Exception {
-        String dateStr = "2024-04-26";
-        Instant date = strToInstant(dateStr);
+        Instant today = Instant.now();
+        String dateStr = instantToString(today);
         double totalSale = 6500.0;
 
-        when(orderService.getTotalSale(date, date)).thenReturn(totalSale);
+        when(orderService.getTotalSale(any(), any())).thenReturn(totalSale);
 
-        ResultActions response = mockMvc.perform(get("/api/order/sale-on-date?date=" + dateStr)
+        ResultActions response = mockMvc.perform(get("/api/order/sale-on-date")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.date", Matchers.is(dateStr)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total", Matchers.is(totalSale)));
     }
+
 
     @Test
     public void OrderController_GetMaxSaleDate_ReturnTotalWithDate() throws Exception {

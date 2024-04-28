@@ -20,6 +20,10 @@ public class DateUtil {
         return localDateToInstant(LocalDate.parse(date, FORMATTER));
     }
 
+    public static String instantToString(Instant date) {
+        return localDateToStr(instantToLocalDate(date));
+    }
+
     public static Instant getMinDate() {
         return localDateToInstant(LocalDate.of(2000, 1, 1));
     }
