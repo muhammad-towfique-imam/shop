@@ -10,6 +10,7 @@ import java.time.Instant;
 
 import static com.cyanice.shop.etc.DateUtil.endOfDay;
 import static com.cyanice.shop.etc.DateUtil.startOfDay;
+import static com.cyanice.shop.etc.Validator.checkEmpty;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,6 +29,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public MaxSaleDateDto getMaxSale(Instant from, Instant to) {
-        return orderRepository.getMaxSale(startOfDay(from), endOfDay(to));
+        MaxSaleDateDto dto = orderRepository.getMaxSale(startOfDay(from), endOfDay(to));
+        checkEmpty(dto);
+        return dto;
     }
 }

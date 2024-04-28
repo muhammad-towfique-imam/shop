@@ -4,6 +4,7 @@ import com.cyanice.shop.dto.MaxSaleDateDto;
 import com.cyanice.shop.dto.PopularProductDto;
 import com.cyanice.shop.dto.ProductDto;
 import com.cyanice.shop.enumeration.SaleDuration;
+import com.cyanice.shop.exception.NoDataException;
 import com.cyanice.shop.service.OrderService;
 import com.cyanice.shop.service.ProductService;
 import org.hamcrest.Matchers;
@@ -85,7 +86,7 @@ public class OrderControllerTests {
         String toStr = "2024-04-26";
         Instant to = strToInstant(toStr);
 
-        when(orderService.getMaxSale(from, to)).thenReturn(null);
+        when(orderService.getMaxSale(from, to)).thenThrow(new NoDataException());
 
         String url = String.format("/api/order/max-sale-date?from=%s&to=%s", fromStr, toStr);
         ResultActions response = mockMvc.perform(get(url)

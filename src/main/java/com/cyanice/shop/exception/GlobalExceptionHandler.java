@@ -13,8 +13,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<ExceptionDto> handleAll(Throwable t) {
         log.error(String.format("Exception: %s", t.getMessage()));
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                ExceptionDto.builder().type(t.getClass().getName()).message(t.getMessage()).build()
-        );
+        return switch (t) {
+            case AbstractException e -> ResponseEntity.status(e.status).body(
+                    ExceptionDto.builder().code(e.code).message(e.getMessage()).build()
+            );
+            default -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    ExceptionDto.builder().code("app.unexpected").message(t.getMessage()).build()
+            );
+        };
     }
 }

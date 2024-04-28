@@ -13,9 +13,7 @@ public enum SaleDuration {
     public DurationDto getDto() {
         return switch (this) {
             case All -> DurationDto.builder().from(getMinDate()).to(Instant.now()).build();
-            case LastMonth -> {
-                yield DurationDto.builder().from(startOfPrevMonth()).to(endOfPrevMonth()).build();
-            }
+            case LastMonth -> DurationDto.builder().from(startOfPrevMonth()).to(endOfPrevMonth()).build();
         };
     }
 }
