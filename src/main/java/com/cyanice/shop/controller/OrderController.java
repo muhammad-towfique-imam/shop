@@ -41,7 +41,7 @@ public class OrderController {
     @GetMapping("/sale-on-date")
     public ResponseEntity<CurrentSaleDto> saleOnDate(
             @RequestParam(name = "on", required = false) @DateTimeFormat(pattern = API_DATE_FMT) LocalDate on) {
-        log.info(String.format("Inside OrderController()"));
+        log.info("Inside OrderController()");
         log.debug(String.format("Parameters = (date) -> %s", on));
         Instant instantDate = on != null? localDateToInstant(on): Instant.now();
         double total = orderService.getTotalSale(instantDate, instantDate);
