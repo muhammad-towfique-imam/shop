@@ -19,10 +19,11 @@ insert into t_wishlist(customer_id, product_id, created_date) values (1, 3, '202
 insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-04-25 00:00:00+06', '2024-04-26 00:00:00+06');
 insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-04-27 00:00:00+06', '2024-04-27 00:00:00+06');
 insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'NotPaid', '2024-04-27 00:00:00+06', '2024-04-27 00:00:00+06');
-insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-03-17 00:00:00+06', '2024-03-17 00:00:00+06');
+insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-03-31 23:59:59+06', '2024-03-31 23:59:59+06');
 insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-02-11 00:00:00+06', '2024-02-11 00:00:00+06');
 insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-02-12 00:00:00+06', '2024-02-12 00:00:00+06');
-insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-02-13 00:00:00+06', '2024-02-13 00:00:00+06');
+insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-02-13 23:59:59+06', '2024-02-13 23:59:59+06');
+insert into t_order(customer_id, order_status, created_date, last_modified_date) values (1, 'Paid', '2024-03-01 00:00:00+06', '2024-03-01 00:00:00+06');
 
 -- OrderLine
 insert into t_order_line(order_id, unit_price, quantity, product_id) values (1, 900.00, 1, 1);
@@ -35,3 +36,4 @@ insert into t_order_line(order_id, unit_price, quantity, product_id) values (4, 
 insert into t_order_line(order_id, unit_price, quantity, product_id) values (5, 40.00, 2, 6);
 insert into t_order_line(order_id, unit_price, quantity, product_id) values (6, 1499.00, 1, 5);
 insert into t_order_line(order_id, unit_price, quantity, product_id) values (7, 499.00, 1, 4);
+insert into t_order_line(order_id, unit_price, quantity, product_id) values (8, 1499.00, 1, 5);
