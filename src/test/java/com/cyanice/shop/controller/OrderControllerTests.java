@@ -104,9 +104,9 @@ public class OrderControllerTests {
                 PopularProductDto.builder().name("iMac").price(3000.0).saleCount(30).build()
         );
 
-        when(productService.getPopularProducts(SaleQueryCategory.Count, SaleDuration.All)).thenReturn(products);
+        when(productService.getPopularProducts(SaleQueryCategory.Amount, SaleDuration.All)).thenReturn(products);
 
-        ResultActions response = mockMvc.perform(get("/api/order/popular-products?category=Count")
+        ResultActions response = mockMvc.perform(get("/api/order/popular-products?category=Amount")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
@@ -121,9 +121,9 @@ public class OrderControllerTests {
                 PopularProductDto.builder().name("iMac").price(3000.0).saleCount(30).build()
         );
 
-        when(productService.getPopularProducts(SaleQueryCategory.Amount, SaleDuration.LastMonth)).thenReturn(products);
+        when(productService.getPopularProducts(SaleQueryCategory.Count, SaleDuration.LastMonth)).thenReturn(products);
 
-        ResultActions response = mockMvc.perform(get("/api/order/popular-products?duration=LastMonth&category=Amount")
+        ResultActions response = mockMvc.perform(get("/api/order/popular-products?duration=LastMonth&category=Count")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
