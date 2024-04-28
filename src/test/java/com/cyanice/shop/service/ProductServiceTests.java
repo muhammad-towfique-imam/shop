@@ -1,6 +1,7 @@
 package com.cyanice.shop.service;
 
 import com.cyanice.shop.dto.ProductDto;
+import com.cyanice.shop.dto.WishlistResponse;
 import com.cyanice.shop.entity.Product;
 import com.cyanice.shop.repository.ProductRepository;
 import com.cyanice.shop.service.impl.ProductServiceImpl;
@@ -10,6 +11,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,12 +37,13 @@ public class ProductServiceTests {
             Product.builder().name("iMac").price(3000.0).build()
         );
 
-        when(productRepository.getCustomerWishlist(1)).thenReturn(inputList);
+        Pageable pageInfo = PageRequest.of(1, 10);
+        when(productRepository.getCustomerWishlist(1, pageInfo)).thenReturn(new PageImpl<>(inputList));
 
-        List<ProductDto> outputList = productService.getCustomerWishlist(1);
+        WishlistResponse response = productService.getCustomerWishlist(1, 1, 10);
 
-        Assertions.assertThat(outputList).isNotNull();
-        Assertions.assertThat(outputList.size()).isEqualTo(3);
+        Assertions.assertThat(response.getContent()).isNotNull();
+        Assertions.assertThat(response.getContent().size()).isEqualTo(3);
     }
 
 }

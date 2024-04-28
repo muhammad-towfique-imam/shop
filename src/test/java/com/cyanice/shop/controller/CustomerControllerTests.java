@@ -1,6 +1,7 @@
 package com.cyanice.shop.controller;
 
 import com.cyanice.shop.dto.ProductDto;
+import com.cyanice.shop.dto.WishlistResponse;
 import com.cyanice.shop.service.ProductService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,16 +31,18 @@ public class CustomerControllerTests {
 
     @Test
     public void CustomerController_GetCustomerWishlist_ReturnWishlistNotEmpty() throws Exception {
-        when(productService.getCustomerWishlist(1)).thenReturn(Arrays.asList(
-                ProductDto.builder().name("iPhone").price(1000.0).build(),
-                ProductDto.builder().name("iPod").price(300.0).build(),
-                ProductDto.builder().name("iMac").price(3000.0).build()
-        ));
+        List<ProductDto> products = Arrays.asList(
+            ProductDto.builder().name("iPhone").price(1000.0).build(),
+            ProductDto.builder().name("iPod").price(300.0).build(),
+            ProductDto.builder().name("iMac").price(3000.0).build()
+        );
+        WishlistResponse responseDto = WishlistResponse.builder().pageSize(10).last(true).pageNo(0).content(products).build();
+        when(productService.getCustomerWishlist(1, 0, 10)).thenReturn(responseDto);
 
         ResultActions response = mockMvc.perform(get("/api/customer/1/wishlist")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.hasSize(3)));
     }
 }

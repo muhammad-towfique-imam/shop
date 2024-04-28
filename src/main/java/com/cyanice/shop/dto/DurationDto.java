@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrentSaleDto {
-    private LocalDate date;
-    private Double total;
+public class DurationDto {
+    private Instant from;
+    private Instant to;
 }

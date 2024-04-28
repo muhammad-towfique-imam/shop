@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrentSaleDto {
-    private LocalDate date;
-    private Double total;
+public class PopularProductDto {
+    private long id;
+    private String name;
+    private String description;
+    private Double price;
+    private long saleCount;
 }

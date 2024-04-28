@@ -1,5 +1,6 @@
 package com.cyanice.shop.repository;
 
+import com.cyanice.shop.dto.WishlistResponse;
 import com.cyanice.shop.entity.Customer;
 import com.cyanice.shop.entity.Product;
 import com.cyanice.shop.entity.Wishlist;
@@ -9,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @DataJpaTest
@@ -59,10 +65,11 @@ public class WishlistRepositoryTests {
         wishlistRepository.save(w2);
         wishlistRepository.save(w3);
 
-        List<Product> productList = productRepository.getCustomerWishlist(c1.getId());
+        Pageable pageInfo = PageRequest.of(0, 10);
+        Page<Product> page = productRepository.getCustomerWishlist(c1.getId(), pageInfo);
 
-        Assertions.assertThat(productList).isNotNull();
-        Assertions.assertThat(productList.size()).isEqualTo(3);
+        Assertions.assertThat(page.getContent()).isNotNull();
+        Assertions.assertThat(page.getContent().size()).isEqualTo(3);
     }
 
 }

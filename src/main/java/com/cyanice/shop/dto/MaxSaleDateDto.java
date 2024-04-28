@@ -1,17 +1,16 @@
 package com.cyanice.shop.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class MaxSaleDateDto {
-    private Instant date;
+    private LocalDate date;
     private Double total;
+
+    public MaxSaleDateDto(int year, int month, int day, double total) {
+        this.date =  LocalDate.of(year, month, day);
+        this.total = total;
+    }
 }

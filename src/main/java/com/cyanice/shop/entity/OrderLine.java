@@ -23,7 +23,7 @@ public class OrderLine {
     private Order order;
     @NotNull
     @Column(name = "unit_price", nullable = false)
-    private Double unitPrice;
+    private double unitPrice;
     @NotNull
     @Column(name = "quantity", nullable = false)
     private Integer quantity;

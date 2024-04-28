@@ -1,15 +1,12 @@
 package com.cyanice.shop.controller;
 
 
-import com.cyanice.shop.dto.ProductDto;
+import com.cyanice.shop.dto.WishlistResponse;
 import com.cyanice.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -22,7 +19,10 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}/wishlist")
-    public List<ProductDto> getUserWishlist(@PathVariable long id) {
-        return productService.getCustomerWishlist(id);
+    public ResponseEntity<WishlistResponse> getUserWishlist(
+            @PathVariable long id,
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize) {
+        return new ResponseEntity<>(productService.getCustomerWishlist(id, pageNo, pageSize), HttpStatus.OK);
     }
 }
