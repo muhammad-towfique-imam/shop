@@ -55,3 +55,4 @@ build/reports/tests/test/index.html
 
    http://localhost:8080/api/order/popular-products?duration=LastMonth&category=Count
 
+** All the date (yyyy-MM-dd) value for input are considered to be in UTC

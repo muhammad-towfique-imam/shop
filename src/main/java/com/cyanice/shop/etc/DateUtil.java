@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class DateUtil {
+    private static ZoneId tz = ZoneId.of("UTC");
     public static final String API_DATE_FMT = "yyyy-MM-dd";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(API_DATE_FMT);
 
@@ -29,19 +30,19 @@ public class DateUtil {
     }
 
     public static Instant localDateToInstant(LocalDate date) {
-        return date.atStartOfDay(ZoneId.systemDefault()).toInstant();
+        return date.atStartOfDay(tz).toInstant();
     }
 
     public static LocalDate instantToLocalDate(Instant instant) {
-        return instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        return instant.atZone(tz).toLocalDate();
     }
 
     public static Instant startOfDay(Instant date) {
-        return startOfDay(date.atZone(ZoneId.systemDefault())).toInstant();
+        return startOfDay(date.atZone(tz)).toInstant();
     }
 
     public static Instant endOfDay(Instant date) {
-        return endOfDay(date.atZone(ZoneId.systemDefault())).toInstant();
+        return endOfDay(date.atZone(tz)).toInstant();
     }
 
     public static Instant startOfPrevMonth() {
