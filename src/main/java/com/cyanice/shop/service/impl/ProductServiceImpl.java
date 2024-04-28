@@ -5,6 +5,7 @@ import com.cyanice.shop.dto.ProductDto;
 import com.cyanice.shop.dto.WishlistResponse;
 import com.cyanice.shop.entity.Product;
 import com.cyanice.shop.enumeration.SaleDuration;
+import com.cyanice.shop.enumeration.SaleQueryCategory;
 import com.cyanice.shop.repository.ProductRepository;
 import com.cyanice.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+    public static int POPULAR_PRODUCT_QUERY_LIMIT = 5;
     private ProductRepository productRepository;
 
     @Autowired
@@ -44,8 +46,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<PopularProductDto> getPopularProducts(SaleDuration duration) {
-        return productRepository.getPopularProducts(duration.getDto().getFrom(), duration.getDto().getTo(), 3);
+    public List<PopularProductDto> getPopularProducts(SaleQueryCategory category, SaleDuration duration) {
+        return switch (category) {
+            case Count -> productRepository.getPopularProductsByCount(
+                    duration.getDto().getFrom(),
+                    duration.getDto().getTo(),
+                    POPULAR_PRODUCT_QUERY_LIMIT);
+            case Amount -> productRepository.getPopularProductsByAmount(
+                    duration.getDto().getFrom(),
+                    duration.getDto().getTo(),
+                    POPULAR_PRODUCT_QUERY_LIMIT);
+        };
     }
 
     private ProductDto mapToDto(Product product) {

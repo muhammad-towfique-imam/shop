@@ -6,6 +6,7 @@ import com.cyanice.shop.entity.Order;
 import com.cyanice.shop.entity.OrderLine;
 import com.cyanice.shop.entity.Product;
 import com.cyanice.shop.enumeration.OrderStatus;
+import com.cyanice.shop.enumeration.SaleQueryCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class ProductRepositoryTests {
     }
 
     @Test
-    public void ProductRepository_GetPopularProducts_ReturnProductList() {
+    public void ProductRepository_PopularProductsByCount_ReturnProductList() {
         Instant to = Instant.now();
         Instant from = to.minus(20, ChronoUnit.DAYS);
 
@@ -86,7 +87,7 @@ public class ProductRepositoryTests {
         o2.setLines(lines2);
         orderRepository.save(o2);
 
-        List<PopularProductDto> list = productRepository.getPopularProducts(from, to, 2);
+        List<PopularProductDto> list = productRepository.getPopularProductsByCount(from, to, 2);
 
         Assertions.assertThat(list).isNotEmpty();
         Assertions.assertThat(list.size()).isEqualTo(2);

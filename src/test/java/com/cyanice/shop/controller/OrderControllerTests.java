@@ -4,6 +4,7 @@ import com.cyanice.shop.dto.MaxSaleDateDto;
 import com.cyanice.shop.dto.PopularProductDto;
 import com.cyanice.shop.dto.ProductDto;
 import com.cyanice.shop.enumeration.SaleDuration;
+import com.cyanice.shop.enumeration.SaleQueryCategory;
 import com.cyanice.shop.exception.NoDataException;
 import com.cyanice.shop.service.OrderService;
 import com.cyanice.shop.service.ProductService;
@@ -96,16 +97,16 @@ public class OrderControllerTests {
     }
 
     @Test
-    public void OrderController_GetPopularProducts_ReturnZeroOrMoreProducts() throws Exception {
+    public void OrderController_PopularProducts_ReturnZeroOrMoreProducts() throws Exception {
         List<PopularProductDto> products = Arrays.asList(
                 PopularProductDto.builder().name("iPhone").price(1000.0).saleCount(50).build(),
                 PopularProductDto.builder().name("iPod").price(300.0).saleCount(40).build(),
                 PopularProductDto.builder().name("iMac").price(3000.0).saleCount(30).build()
         );
 
-        when(productService.getPopularProducts(SaleDuration.All)).thenReturn(products);
+        when(productService.getPopularProducts(SaleQueryCategory.Count, SaleDuration.All)).thenReturn(products);
 
-        ResultActions response = mockMvc.perform(get("/api/order/popular-products")
+        ResultActions response = mockMvc.perform(get("/api/order/popular-products?category=Count")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
@@ -120,9 +121,9 @@ public class OrderControllerTests {
                 PopularProductDto.builder().name("iMac").price(3000.0).saleCount(30).build()
         );
 
-        when(productService.getPopularProducts(SaleDuration.LastMonth)).thenReturn(products);
+        when(productService.getPopularProducts(SaleQueryCategory.Amount, SaleDuration.LastMonth)).thenReturn(products);
 
-        ResultActions response = mockMvc.perform(get("/api/order/popular-products?duration=LastMonth")
+        ResultActions response = mockMvc.perform(get("/api/order/popular-products?duration=LastMonth&category=Amount")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())

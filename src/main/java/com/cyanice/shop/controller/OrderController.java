@@ -4,6 +4,7 @@ package com.cyanice.shop.controller;
 import com.cyanice.shop.dto.CurrentSaleDto;
 import com.cyanice.shop.dto.PopularProductDto;
 import com.cyanice.shop.enumeration.SaleDuration;
+import com.cyanice.shop.enumeration.SaleQueryCategory;
 import com.cyanice.shop.service.OrderService;
 import com.cyanice.shop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -63,9 +64,10 @@ public class OrderController {
 
     @GetMapping("/popular-products")
     public ResponseEntity<List<PopularProductDto>> popularProducts(
+            @RequestParam(name = "category") SaleQueryCategory category,
             @RequestParam(name = "duration", required = false, defaultValue = "All") SaleDuration duration) {
         return new ResponseEntity<>(
-                productService.getPopularProducts(duration),
+                productService.getPopularProducts(category, duration),
                 HttpStatus.OK
         );
     }

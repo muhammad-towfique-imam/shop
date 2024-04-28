@@ -15,4 +15,5 @@ public class PopularProductDto {
     private String description;
     private Double price;
     private long saleCount;
+    private Double saleAmount;
 }
