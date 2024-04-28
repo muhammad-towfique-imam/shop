@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<PopularProductDto> getPopularProducts(SaleDuration duration) {
-        return productRepository.getPopularProducts(duration.getDto().getFrom(), duration.getDto().getTo());
+        return productRepository.getPopularProducts(duration.getDto().getFrom(), duration.getDto().getTo(), 3);
     }
 
     private ProductDto mapToDto(Product product) {

@@ -28,7 +28,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         "WHERE  ol.order.status = 'Paid' " +
         "AND    ol.order.lastModifiedDate BETWEEN :from AND :to " +
         "GROUP BY ol.product.id " +
-        "ORDER BY qty DESC"
+        "ORDER BY qty DESC " +
+        "LIMIT :limit"
     )
-    List<PopularProductDto> getPopularProducts(@Param("from") Instant from, @Param("to") Instant to);
+    List<PopularProductDto> getPopularProducts(@Param("from") Instant from, @Param("to") Instant to, int limit);
 }
