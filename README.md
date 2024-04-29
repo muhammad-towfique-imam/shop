@@ -25,7 +25,7 @@ Once the application is started the following can be accessed:
 ### Postman
 Postman collection export for this project can be found here:
 ```shell
-extra/Shop Assignment.postman_collection.json
+extra/shop_postman_collection.json
 ```
 ### Running the test cases
 Use the following command to run all the test cases:
